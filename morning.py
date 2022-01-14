@@ -3,16 +3,23 @@ import pyautogui
 from time import sleep
 import sys
 from datetime import datetime
+import subprocess
+pyautogui.FAILSAFE = False
 
 # Open teams
 desktop_path = "C:/Users/Justin/Desktop"
-os.startfile(desktop_path + '/Microsoft Teams.lnk')
+# os.startfile(desktop_path + '/Microsoft Teams.lnk')
+subprocess.call(r'C:\Users\Justin\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"')
 sleep(6)
 
 #full screen
-pyautogui.keyDown("win")
-pyautogui.press("up")
-pyautogui.keyUp("win")
+# pyautogui.keyDown("win")
+# pyautogui.press("up")
+# pyautogui.keyUp("win")
+
+pyautogui.keyDown("ctrl")
+pyautogui.press("e")
+pyautogui.keyUp("ctrl")
 
 sleep(1)
 pyautogui.moveTo(600,20)
@@ -20,38 +27,52 @@ pyautogui.click()
 
 #search for dm
 pyautogui.typewrite("Le, Justin H. (EL)")
-sleep(1)
-pyautogui.moveTo(600,150)
-pyautogui.click()
-
+sleep(6)
+pyautogui.keyDown("down")
+pyautogui.keyDown("enter")
+pyautogui.keyUp("down")
+pyautogui.keyUp("enter")
 #get search bar
-pyautogui.moveTo(750,975)
-pyautogui.click()
+
+# pyautogui.moveTo(750,975)
+# pyautogui.click()
+pyautogui.keyDown("alt")
+pyautogui.keyDown("shift")
+pyautogui.keyDown("c")
+
+pyautogui.keyUp("alt")
+pyautogui.keyUp("shift")
+pyautogui.keyUp("c")
 
 now = datetime.now()
 current_time = int(now.strftime("%H%M%S"))
-#5 is friday
+# 0 sunday
+# 1 Monday
+# 2 Tues
+# 3 Wedn
+# 4 Thurs
+# 5 Fri
 current_date = int(now.strftime("%w"))
-
 print("current time " + str(current_time))
-print("curren date " + str(current_date))
+print("current  date " + str(current_date))
 
-if 170000 <= current_time <= 170100:
-    if current_date == 5:
-        pyautogui.typewrite("Have a good weekend!")
-    else:
-        pyautogui.typewrite("Good Night!")
-    pyautogui.typewrite(["enter"])
-    sleep(1)
-    os.system("TASKKILL /F /IM Teams.exe")
-    sys.exit()
+if current_date == 1 or current_date == 4 or current_date == 5:
+    if 164500 <= current_time <= 170100:
+        if current_date == 5:
+            pyautogui.typewrite("Have a good weekend!")
+        else:
+            pyautogui.typewrite("Good night!")
+        pyautogui.typewrite(["enter"])
+        sleep(1)
+        os.system("TASKKILL /F /IM Teams.exe")
+        sys.exit()
 
-if 80000 <= current_time <= 80100:
-    if current_date == 5:
-        pyautogui.typewrite("Happy Friday!")
-    else:
-        pyautogui.typewrite("Good Morning!")
-    pyautogui.typewrite(["enter"])
-    sys.exit()
+    if 80000 <= current_time <= 80100:
+        if current_date == 5:
+            pyautogui.typewrite("Happy Friday!")
+        else:
+            pyautogui.typewrite("Good Morning!")
+        pyautogui.typewrite(["enter"])
+        sys.exit()
 
 
