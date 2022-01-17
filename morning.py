@@ -26,7 +26,7 @@ pyautogui.moveTo(600,20)
 pyautogui.click()
 
 #search for dm
-pyautogui.typewrite("Le, Justin H. (EL)")
+pyautogui.typewrite("UI Development")
 sleep(6)
 pyautogui.keyDown("down")
 pyautogui.keyDown("enter")
@@ -67,12 +67,17 @@ if current_date == 1 or current_date == 4 or current_date == 5:
         os.system("TASKKILL /F /IM Teams.exe")
         sys.exit()
 
-    if 80000 <= current_time <= 80100:
+    if 70000 <= current_time <= 80100:
         if current_date == 5:
             pyautogui.typewrite("Happy Friday!")
         else:
             pyautogui.typewrite("Good Morning!")
         pyautogui.typewrite(["enter"])
         sys.exit()
+    
+    print("Not Correct Time")
+else:
+    print("Not Correct Date")
+    sys.exit()
 
 
