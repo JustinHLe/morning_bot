@@ -4,9 +4,18 @@ from time import sleep
 import sys
 from datetime import datetime
 import subprocess
+
 pyautogui.FAILSAFE = False
 
+now = datetime.now()
+current_date = int(now.strftime("%w"))
+current_time = int(now.strftime("%H%M%S"))
+
+if 70000 <= current_time <= 80100:
+    sleep(60)
+
 # Open teams
+
 desktop_path = "C:/Users/Justin/Desktop"
 # os.startfile(desktop_path + '/Microsoft Teams.lnk')
 subprocess.call(r'C:\Users\Justin\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"')
@@ -22,8 +31,8 @@ pyautogui.press("e")
 pyautogui.keyUp("ctrl")
 
 sleep(1)
-pyautogui.moveTo(600,20)
-pyautogui.click()
+# pyautogui.moveTo(600,20)
+# pyautogui.click()
 
 #search for dm
 pyautogui.typewrite("UI Development")
@@ -44,15 +53,12 @@ pyautogui.keyUp("alt")
 pyautogui.keyUp("shift")
 pyautogui.keyUp("c")
 
-now = datetime.now()
-current_time = int(now.strftime("%H%M%S"))
 # 0 sunday
 # 1 Monday
 # 2 Tues
 # 3 Wedn
 # 4 Thurs
 # 5 Fri
-current_date = int(now.strftime("%w"))
 print("current time " + str(current_time))
 print("current  date " + str(current_date))
 
