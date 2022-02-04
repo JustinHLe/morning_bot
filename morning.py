@@ -4,6 +4,9 @@ from time import sleep
 import sys
 from datetime import datetime
 import subprocess
+import psutil
+import pygetwindow as gw  
+
 
 pyautogui.FAILSAFE = False
 
@@ -14,37 +17,51 @@ current_time = int(now.strftime("%H%M%S"))
 if 70000 <= current_time <= 80100:
     sleep(60)
 
-# Open teams
+opened = False
+#check if teams is open
+for proc in psutil.process_iter():
+    try:
+        # Get process name & pid from process object.
+        processName = proc.name()
+        processID = proc.pid
+        if(processName == "Teams.exe"):
+            print("found team process")
+            opened = True
+            break
+    except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+        pass
+
 
 desktop_path = "C:/Users/Justin/Desktop"
-# os.startfile(desktop_path + '/Microsoft Teams.lnk')
-subprocess.call(r'C:\Users\Justin\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"')
-sleep(6)
+# Open teams
+if (opened):
+    subprocess.call(r'C:\Users\Justin\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"')
+    sleep(6)
+else:
+    subprocess.call(r'C:\Users\Justin\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"')
+    sleep(6)
+    win = gw.getWindowsWithTitle('Microsoft Teams')[0] 
+    win.minimize()
+    win.maximize()
 
-#full screen
-# pyautogui.keyDown("win")
-# pyautogui.press("up")
-# pyautogui.keyUp("win")
-
+#move to search bar
 pyautogui.keyDown("ctrl")
 pyautogui.press("e")
 pyautogui.keyUp("ctrl")
 
 sleep(1)
-# pyautogui.moveTo(600,20)
-# pyautogui.click()
 
-#search for dm
-pyautogui.typewrite("UI Development")
+
+#enter query
+pyautogui.typewrite("Le, Justin H. (EL)")
 sleep(6)
 pyautogui.keyDown("down")
 pyautogui.keyDown("enter")
 pyautogui.keyUp("down")
 pyautogui.keyUp("enter")
-#get search bar
 
-# pyautogui.moveTo(750,975)
-# pyautogui.click()
+
+#move to text bar
 pyautogui.keyDown("alt")
 pyautogui.keyDown("shift")
 pyautogui.keyDown("c")
