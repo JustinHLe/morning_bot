@@ -53,7 +53,7 @@ sleep(1)
 
 
 #enter query
-pyautogui.typewrite("Le, Justin H. (EL)")
+pyautogui.typewrite("UI Development")
 sleep(6)
 pyautogui.keyDown("down")
 pyautogui.keyDown("enter")
