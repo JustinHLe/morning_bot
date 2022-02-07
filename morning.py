@@ -39,7 +39,7 @@ if (opened):
     sleep(6)
 else:
     subprocess.call(r'C:\Users\Justin\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"')
-    sleep(6)
+    sleep(20)
     win = gw.getWindowsWithTitle('Microsoft Teams')[0] 
     win.minimize()
     win.maximize()
@@ -91,6 +91,7 @@ if current_date == 1 or current_date == 4 or current_date == 5:
         sys.exit()
 
     if 70000 <= current_time <= 80100:
+        print("Morning")
         if current_date == 5:
             pyautogui.typewrite("Happy Friday!")
         else:
